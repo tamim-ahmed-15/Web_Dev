@@ -21,36 +21,6 @@ const createMsgElement = (content, ...classes) => {
   return div;
 };
 
-// make API call and generate bot response
-// const generateResponse=async(botMsgDiv)=>{
-
-//     const textElement = botMsgDiv.querySelector(".message-text");
-
-//     // add user msg to chat history
-//     chatHistory.push({
-//         role:"user",
-//         parts: [{test: userMessage}]
-//     });
-//     try{
-//         // send the chat history to API to get response
-//         const response= await fetch(API_URL,{
-//             method:"POST",
-//             headers:{"Content-Type": "application/json"} ,
-//             body: JSON.stringify({contents: chatHistory})
-//         });
-
-//         const data=await response.json();
-//         if (!response.ok) throw new Error(data.error.message);
-
-//         // process response text and display it
-//         const responseText= data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g,"$1").trim();
-//         textElement.textContent=responseText;
-//     }
-//     catch(error){
-//         console.log(error);
-//     }
-// }
-
 //scroll to the bottom of the container
 const scrollToBottom = () =>
   container.scrollTo({
@@ -78,7 +48,6 @@ const typingEffect = (text, textElement, botMsgDiv) => {
   }, 40);
 };
 
-// corrected by gpt
 // Make API call and generate bot response
 const generateResponse = async (botMsgDiv) => {
   const textElement = botMsgDiv.querySelector(".message-text");
@@ -100,7 +69,7 @@ const generateResponse = async (botMsgDiv) => {
           ]
         : []),
     ],
-    // parts: [{ text: userMessage }] // ✅ Corrected "test" to "text"
+    // parts: [{ text: userMessage }] 
   });
 
   try {
@@ -111,7 +80,7 @@ const generateResponse = async (botMsgDiv) => {
       body: JSON.stringify({
         contents: [
           {
-            parts: [{ text: userMessage }], // ✅ Correct request body
+            parts: [{ text: userMessage }], 
           },
         ],
       }),
@@ -131,7 +100,7 @@ const generateResponse = async (botMsgDiv) => {
     chatHistory.push({
       role: "model",
       parts: [{ text: responseText }],
-      // parts: [{ text: userMessage }] // ✅ Corrected "test" to "text"
+      // parts: [{ text: userMessage }] 
     });
     console.log(chatHistory);
   } catch (error) {
@@ -226,100 +195,3 @@ promptForm.addEventListener("submit", handleFormSubmit);
 promptForm
   .querySelector("#add-file-btn")
   .addEventListener("click", () => fileInput.click());
-
-//<--- below js part is done by gpt--->//
-
-// // updated by gpt
-// const chatsContainer = document.querySelector(".chats-container");
-// const promptForm = document.querySelector(".prompt-form");
-// const promptInput = promptForm.querySelector(".prompt-input");
-
-// // API setup
-// const API_KEY = "AIzaSyBjrG7lNGOf06LgOdwJfeFap0URAo6CMqw";
-// const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
-
-// let userMessage = "";
-// const chatHistory = [];
-
-// // Function to create a message element
-// const createMsgElement = (content, ...classes) => {
-//     const div = document.createElement("div");
-//     div.classList.add("message", ...classes);
-//     div.innerHTML = content;
-//     return div;
-// };
-
-// // Function to format text (preserving Gemini-like output)
-// const formatGeminiResponse = (text) => {
-//     return text
-//         .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>") // Bold text
-//         .replace(/\n/g, "<br>"); // Preserve line breaks
-// };
-
-// // Generate bot response using Gemini API
-// const generateResponse = async (botMsgDiv) => {
-//     const textElement = botMsgDiv.querySelector(".message-text");
-
-//     // Add user message to chat history
-//     chatHistory.push({
-//         role: "user",
-//         parts: [{ text: userMessage }]
-//     });
-
-//     try {
-//         // Send the full chat history to Gemini API
-//         const response = await fetch(API_URL, {
-//             method: "POST",
-//             headers: { "Content-Type": "application/json" },
-//             body: JSON.stringify({ contents: chatHistory }) // Preserve chat history
-//         });
-
-//         const data = await response.json();
-//         if (!response.ok) throw new Error(data.error?.message || "Unknown API error");
-
-//         // Extract the Gemini response
-//         const responseText = data.candidates[0].content.parts[0].text.trim();
-
-//         // Add bot response to chat history
-//         chatHistory.push({
-//             role: "model",
-//             parts: [{ text: responseText }]
-//         });
-
-//         // Format response (Gemini-like)
-//         textElement.innerHTML = formatGeminiResponse(responseText);
-//         botMsgDiv.classList.remove("loading");
-
-//     } catch (error) {
-//         console.error("Error fetching response:", error);
-//         textElement.textContent = "❌ Error: Unable to get a response. Try again!";
-//         botMsgDiv.classList.remove("loading");
-//     }
-// };
-
-// // Handle form submission
-// const handleFormSubmit = (e) => {
-//     e.preventDefault();
-//     userMessage = promptInput.value.trim();
-
-//     if (!userMessage) return;
-
-//     promptInput.value = "";
-
-//     // Display user message
-//     const userMsgHTML = `<p class="message-text"></p>`;
-//     const userMsgDiv = createMsgElement(userMsgHTML, "user-message");
-//     userMsgDiv.querySelector(".message-text").textContent = userMessage;
-//     chatsContainer.appendChild(userMsgDiv);
-
-//     setTimeout(() => {
-//         // Display bot message placeholder
-//         const botMsgHTML = `<img src="gemini.svg" class="avatar" alt=""><p class="message-text">Just a sec...</p>`;
-//         const botMsgDiv = createMsgElement(botMsgHTML, "bot-message", "loading");
-//         chatsContainer.appendChild(botMsgDiv);
-
-//         generateResponse(botMsgDiv);
-//     }, 600);
-// };
-
-// promptForm.addEventListener("submit", handleFormSubmit);
