@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeSpeed Pro | Unique Word Challenge</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="top-row">
+                <h1>TypeSpeed</h1>
+                <div class="multiplayer-controls">
+                    <span id="peer-id-display">Connecting...</span>
+                    <button onclick="copyInviteLink()" id="invite-btn">Invite Friend</button>
+                </div>
+                <div class="time-options">
+                    <button class="time-btn" data-time="15">15s</button>
+                    <button class="time-btn" data-time="30">30s</button>
+                    <button class="time-btn active" data-time="60">60s</button>
+                </div>
+            </div>
+            
+            <div class="stats-bar">
+                <p>Time: <span id="timer">60</span>s</p>
+                <p>WPM: <span id="wpm">0</span></p>
+                <p>🔥 Streak: <span id="streak-count">0</span></p>
+                <p>Goal: <span id="goal-count">0</span>/10</p>
+            </div>
+        </div>
+
+        <div class="test-area">
+            <div class="quote-display" id="quoteDisplay"></div>
+            <textarea id="quoteInput" class="quote-input" autofocus></textarea>
+        </div>
+
+        <button id="restartBtn" onclick="renderNewQuote()">Restart (ESC)</button>
+    </div>
+
+    <div id="results-screen" class="hidden">
+        <div class="results-content">
+            <h2 id="results-title">Analysis</h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>Stability (WPM/s)</h3>
+                    <canvas id="timelineChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Consistency (Same Mode History)</h3>
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+            <div class="leaderboard">
+                <h3 id="lb-title">🏆 Top Scores</h3>
+                <ul id="leaderboard-list"></ul>
+            </div>
+            <button class="primary-btn" onclick="closeResults()">Next Test</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
