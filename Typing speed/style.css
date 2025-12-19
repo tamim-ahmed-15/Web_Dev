@@ -1,0 +1,209 @@
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Courier New', Courier, monospace; 
+}
+body { 
+    background-color: #323437; 
+    color: #d1d0c5; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    overflow-x: hidden; 
+}
+
+.container { 
+    width: 1100px; 
+    max-width: 95%; 
+    padding: 2rem; 
+    text-align: center; 
+}
+.top-row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 1.5rem; 
+}
+h1 { 
+    color: #e2b714; 
+    font-size: 2.2rem; 
+}
+
+.multiplayer-controls { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 5px; 
+    font-size: 0.8rem; 
+}
+#invite-btn { 
+    background: #e2b714; 
+    border: none; 
+    padding: 5px 12px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    color: #323437; 
+    font-weight: bold; 
+}
+
+.time-options { 
+    display: flex; 
+    gap: 15px; 
+}
+.time-btn { 
+    background: none; 
+    border: none; 
+    color: #646669; 
+    cursor: pointer; 
+    font-size: 1.1rem; 
+}
+.time-btn.active { 
+    color: #e2b714; 
+    font-weight: bold; 
+}
+
+.stats-bar { 
+    display: flex; 
+    justify-content: center; 
+    gap: 2.5rem; 
+    font-size: 1.2rem; 
+    color: #646669; 
+    margin-bottom: 2rem; 
+}
+.stats-bar span { 
+    color: #e2b714; 
+}
+
+#streak-count { 
+    color: #ff4757; 
+    font-weight: bold; 
+}
+#goal-count { 
+    color: #4caf50; 
+    font-weight: bold; 
+}
+.goal-reached { 
+    text-shadow: 0 0 10px #e2b714; 
+}
+
+.test-area { position: relative; }
+.quote-display { 
+    font-size: 1.6rem; 
+    line-height: 2.4rem; 
+    color: #646669; 
+    padding: 25px; 
+    background: rgba(0,0,0,0.1); 
+    border-radius: 10px; 
+    text-align: left; 
+    min-height: 180px; 
+}
+.correct { 
+    color: #d1d0c5; 
+}
+.incorrect { 
+    color: #ca4754; 
+    background: rgba(202, 71, 84, 0.1); }
+.active-char { 
+    border-left: 2px solid #e2b714; 
+    animation: blink 1s infinite; }
+@keyframes blink { 50% { border-color: transparent; } }
+
+.quote-input { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    opacity: 0; 
+    z-index: 10; 
+}
+
+#restartBtn { 
+    display: block; 
+    margin: 3rem auto 0 auto; 
+    background: none; 
+    border: 1px solid #646669; 
+    color: #646669; 
+    padding: 12px 35px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    text-transform: uppercase; 
+}
+#restartBtn:hover { 
+    border-color: #e2b714; 
+    color: #e2b714; 
+}
+
+#results-screen { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: #323437; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 100; 
+    padding: 20px; 
+}
+.hidden { display: none !important; }
+.results-content { 
+    width: 100%; 
+    max-width: 1100px; 
+    text-align: center; }
+.charts-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    margin: 20px 0; 
+}
+.chart-container { 
+    background: #2c2e31; 
+    padding: 15px; 
+    border-radius: 10px;
+    height: 320px; 
+}
+.chart-container h3 { 
+    font-size: 0.8rem; 
+    color: #646669; 
+    margin-bottom: 10px; 
+}
+
+.leaderboard { 
+    margin: 20px 0; 
+    text-align: left; 
+    background: #2c2e31; 
+    padding: 15px; 
+    border-radius: 10px; 
+}
+#leaderboard-list { 
+    list-style: none; 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px; 
+}
+#leaderboard-list li { 
+    background: #323437; 
+    padding: 8px; 
+    border-radius: 4px; 
+    font-size: 0.8rem; 
+    border-left: 3px solid #646669; 
+}
+#leaderboard-list li span { 
+    color: #e2b714; 
+    float: right; 
+    font-weight: bold; }
+
+.primary-btn { 
+    background: #e2b714; 
+    border: none; 
+    padding: 15px 40px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    color: #323437; 
+}
